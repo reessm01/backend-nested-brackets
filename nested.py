@@ -9,71 +9,50 @@ Included brackets:
 <  >
 (*  *)
 """
-__author__ = "Scott Reese"
+__author__ = "Scott Reese /w from an amazing instructor"
 
 import sys
-
+openers = ['(', '[', '{', '<', '(*']
+closers = [')', ']', '}', '>', '*)']
 
 def reset_counts(counts):
     for key in counts.keys():
         counts[key] = [0, 0]
     return counts
 
+def test_string(line):
+    index = 0
+    stack = []
+    while line:
+        char = line[0]
+        if line.startswith("(*"):
+            char = "(*"
+        elif line.startswith("*)"):
+            char = "*)"
 
-def main(text):
-    counts = {"paran": [0, 0], "squares": [0, 0], "curlies": [
-        0, 0], "brackets": [0, 0], "eyes": [0, 0]}
-    closures = {'(': "paran", ')': "paran", '[': "squares", ']': "squares",
-                '{': "curlies", '}': "curlies", '<': "brackets", '>': "brackets", "*": "eyes"}
+        index += 1
 
-    with open(text, 'r') as f:
-        line = f.readline()
-        while len(line) > 0:
+        if char in openers:
+            stack.append(char)
+        elif char in closers:
+            opener_friend = openers[closers.index(char)]
+            if stack.pop() != opener_friend:
+                return ("NO", index)
 
-            skip = False
-            counts = reset_counts(counts)
-            index = 0
-            stop = False
-            for char in line:
+        line = line[len(char):]
 
-                if char in closures.keys():
+    if stack:
+        return ("NO", index)
+    else:
+        return ("YES")
 
-                    if char is "(" and line[index + 1] == "*":
-                        counts["eyes"][0] += 1
-                        counts["eyes"][1] = index
-                        counts["paran"][0] += 1
-                        counts["paran"][1] = index
-
-                    elif char is "*" and line[index + 1] == ")":
-                        counts["eyes"][0] -= 1
-                        counts["eyes"][1] = index
-                        counts["paran"][0] -= 1
-                        counts["paran"][1] = index
-
-                    elif char in ['(', '[', '{', '<']:
-                        counts[closures[char]][0] += 1
-                        counts[closures[char]][1] = index
-
-                    else:
-                        counts[closures[char]][0] -= 1
-                        counts[closures[char]][1] = index
-                index += 1
-            values = counts.values()
-            for value in values:
-                print(value)
-                if value[0] != 0:
-                    with open("output.txt", "a") as file:
-                            string = "NO " + str(value[1]) + "\n"
-                            file.write(string)
-                    break
-                else:
-                    with open("output.txt", "a") as file:
-                        string = "YES" + str(counts) + "\n"
-                        file.write(string)
-                        break
-            line = f.readline()
+def main(args):
+    with open(args[1]) as f:
+        for line in f:
+            result = test_string(line)
+            with open("output.txt", "a") as of:
+                of.write(str(result) + "\n")
 
 
 if __name__ == '__main__':
-    # main(sys.argv)
-    main("input.txt")
+    main(sys.argv)

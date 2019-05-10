@@ -1,27 +1,13 @@
-YES{'curlies': [0, 0], 'eyes': [0, 6], 'squares': [0, 0], 'paran': [0, 7], 'brackets': [0, 0]}
-YES{'curlies': [0, 5], 'eyes': [-1, 6], 'squares': [0, 0], 'paran': [-1, 7], 'brackets': [0, 0]}
-YES{'curlies': [0, 0], 'eyes': [-12, 16], 'squares': [0, 0], 'paran': [-2, 17], 'brackets': [0, 18]}
-YES{'curlies': [0, 0], 'eyes': [-3, 13], 'squares': [0, 0], 'paran': [-2, 14], 'brackets': [0, 0]}
-YES{'curlies': [0, 0], 'eyes': [-2, 11], 'squares': [0, 0], 'paran': [-2, 12], 'brackets': [0, 0]}
-YES{'curlies': [0, 15], 'eyes': [0, 0], 'squares': [1, 14], 'paran': [1, 10], 'brackets': [0, 0]}
-YES{'curlies': [0, 0], 'eyes': [0, 0], 'squares': [1, 4], 'paran': [-1, 6], 'brackets': [0, 0]}
-YES{'curlies': [0, 0], 'eyes': [-1, 5], 'squares': [0, 0], 'paran': [-1, 6], 'brackets': [0, 0]}
-YES{'curlies': [0, 0], 'eyes': [-1, 6], 'squares': [0, 0], 'paran': [0, 5], 'brackets': [0, 0]}
-YES{'curlies': [0, 0], 'eyes': [0, 0], 'squares': [0, 0], 'paran': [0, 0], 'brackets': [0, 0]}
-YES{'curlies': [0, 0], 'eyes': [0, 0], 'squares': [0, 0], 'paran': [1, 7], 'brackets': [0, 0]}
-YES{'curlies': [0, 0], 'eyes': [-7, 7], 'squares': [0, 0], 'paran': [0, 0], 'brackets': [0, 0]}
-YES{'curlies': [0, 0], 'eyes': [0, 0], 'squares': [0, 0], 'paran': [0, 0], 'brackets': [0, 0]}
-
-YES{'paran': [0, 7], 'squares': [0, 0], 'curlies': [0, 0], 'brackets': [0, 0], 'eyes': [0, 6]}
-NO 7
-NO 17
-NO 14
-NO 12
-NO 10
-NO 6
-NO 6
-YES{'paran': [0, 5], 'squares': [0, 0], 'curlies': [0, 0], 'brackets': [0, 0], 'eyes': [-1, 6]}
-YES{'paran': [0, 0], 'squares': [0, 0], 'curlies': [0, 0], 'brackets': [0, 0], 'eyes': [0, 0]}
-NO 7
-YES{'paran': [0, 0], 'squares': [0, 0], 'curlies': [0, 0], 'brackets': [0, 0], 'eyes': [-7, 7]}
-YES{'paran': [0, 0], 'squares': [0, 0], 'curlies': [0, 0], 'brackets': [0, 0], 'eyes': [0, 0]}
+('NO', 6)
+YES
+('NO', 17)
+YES
+('NO', 10)
+('NO', 17)
+('NO', 6)
+YES
+YES
+YES
+('NO', 13)
+YES
+YES
