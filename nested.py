@@ -16,47 +16,64 @@ import sys
 
 def reset_counts(counts):
     for key in counts.keys():
-        counts[key] = 0
+        counts[key] = [0, 0]
     return counts
 
 
-def main(args):
-    counts = {"paran": 0, "squares": 0, "curlies": 0, "brackets": 0, "eyes": 0}
+def main(text):
+    counts = {"paran": [0, 0], "squares": [0, 0], "curlies": [
+        0, 0], "brackets": [0, 0], "eyes": [0, 0]}
     closures = {'(': "paran", ')': "paran", '[': "squares", ']': "squares",
-                '{': "curlies", '}': "curlies", '<': "brackets", '>': "brackets"}
+                '{': "curlies", '}': "curlies", '<': "brackets", '>': "brackets", "*": "eyes"}
 
-    with open(args[1], 'r') as f:
+    with open(text, 'r') as f:
         line = f.readline()
         while len(line) > 0:
+
+            skip = False
             counts = reset_counts(counts)
             index = 0
             stop = False
             for char in line:
+
                 if char in closures.keys():
+
                     if char is "(" and line[index + 1] == "*":
-                        counts["eyes"] += 1
+                        counts["eyes"][0] += 1
+                        counts["eyes"][1] = index
+                        counts["paran"][0] += 1
+                        counts["paran"][1] = index
+
                     elif char is "*" and line[index + 1] == ")":
-                        counts["eyes"] -= 1
+                        counts["eyes"][0] -= 1
+                        counts["eyes"][1] = index
+                        counts["paran"][0] -= 1
+                        counts["paran"][1] = index
+
                     elif char in ['(', '[', '{', '<']:
-                        counts[closures[char]] += 1
+                        counts[closures[char]][0] += 1
+                        counts[closures[char]][1] = index
+
                     else:
-                        counts[closures[char]] -= 1
-                for value in counts.values():
-                    if value < 0:
-                        stop = True
-                        with open("output.txt", "a") as file:
-                            string = "NO " + str(index) + "\n"
-                            file.write(string)
-                        break
-                if stop:
-                    break
+                        counts[closures[char]][0] -= 1
+                        counts[closures[char]][1] = index
                 index += 1
-            if not stop:
-                with open("output.txt", "a") as file:
-                    string = "YES" + "\n"
-                    file.write(string)
+            values = counts.values()
+            for value in values:
+                print(value)
+                if value[0] != 0:
+                    with open("output.txt", "a") as file:
+                            string = "NO " + str(value[1]) + "\n"
+                            file.write(string)
+                    break
+                else:
+                    with open("output.txt", "a") as file:
+                        string = "YES" + str(counts) + "\n"
+                        file.write(string)
+                        break
             line = f.readline()
 
 
 if __name__ == '__main__':
-    main(sys.argv)
+    # main(sys.argv)
+    main("input.txt")
